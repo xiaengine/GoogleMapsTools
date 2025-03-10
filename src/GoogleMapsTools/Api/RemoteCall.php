@@ -1,7 +1,7 @@
 <?php
 namespace GoogleMapsTools\Api;
 
-use GoogleMapsTools\ApiException;
+use GoogleMapsTools\Api\ApiException;
 
 abstract class RemoteCall
 {
