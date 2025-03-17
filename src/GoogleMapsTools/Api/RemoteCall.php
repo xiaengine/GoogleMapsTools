@@ -12,7 +12,6 @@ abstract class RemoteCall
     protected function __execute($url, array $params)
     {
         $url = rtrim($url, '/') . '/json?' . http_build_query($params);
-
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -27,11 +26,11 @@ abstract class RemoteCall
         curl_close($curl);
 
         $result = json_decode($resp, true);
-
         $status = $result['status'];
         if ($status != 'OK') {
             $e = new ApiException('API error');
             $e->setStatus($status);
+            $e->setMessage(isset($result['long_message'])?$result['long_message']:'');
             throw $e;
         }
 

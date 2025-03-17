@@ -7,20 +7,18 @@ use GoogleMapsTools\Point;
 class Geocode extends RemoteCall
 {
     protected $address;
+    private $params = array();
 
-    public function __construct($address)
+    public function __construct($address,$params=array())
     {
-        $this->address = $address;
+        $this->params = $params;
+        $this->params['address'] = $address;
     }
 
     public function execute()
     {
         $url = 'https://maps.googleapis.com/maps/api/geocode/';
-
-        $params = array();
-        $params['address'] = $this->address;
-
-        parent::__execute($url, $params);
+        parent::__execute($url, $this->params);
     }
 
     public function getFirstPoint()

@@ -4,6 +4,7 @@ namespace GoogleMapsTools\Api;
 class ApiException extends \Exception
 {
     protected $status;
+    protected $message;
 
     public function setStatus($status)
     {
@@ -13,5 +14,15 @@ class ApiException extends \Exception
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function setMessage($msg)
+    {
+        $this->message = $msg;
+    }
+
+    public function getErrorMessage()
+    {
+        return $this->message;
     }
 }
